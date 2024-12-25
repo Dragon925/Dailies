@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.TaskListFragment">
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/loading_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="@style/TaskText.Title"
+        android:id="@+id/currant_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/btn_show_calendar"
+        app:layout_constraintEnd_toStartOf="@id/btn_show_calendar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_show_calendar"
+        android:layout_marginHorizontal="8dp"
+        tools:text="25.12.2024" />
+
+
+    <Button
+        android:id="@+id/btn_show_calendar"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:icon="@drawable/ic_arrow_down_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loading_bar" />
+
+    <CalendarView
+        android:id="@+id/calendar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loading_bar" />
+
+    <Button
+        android:id="@+id/btn_hide_calendar"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:icon="@drawable/ic_arrow_up_24"
+        app:layout_constraintEnd_toEndOf="@id/calendar"
+        app:layout_constraintStart_toEndOf="@id/label_hide"
+        app:layout_constraintTop_toBottomOf="@id/calendar" />
+
+    <TextView
+        style="@style/TaskText"
+        android:id="@+id/label_hide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hide"
+        app:layout_constraintBottom_toBottomOf="@id/btn_hide_calendar"
+        app:layout_constraintEnd_toStartOf="@id/btn_hide_calendar"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_hide_calendar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/daily"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_calendar"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_row"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_current_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="currant_date,btn_show_calendar"
+        android:visibility="gone"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="calendar,label_hide,btn_hide_calendar" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btn_hide_calendar,btn_show_calendar"
+        app:barrierDirection="bottom"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

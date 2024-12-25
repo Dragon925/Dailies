@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TaskText">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">@dimen/font_text</item>
+    </style>
+
+    <style name="TaskText.Title" parent="TaskText">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">@dimen/font_title</item>
+    </style>
+
+    <style name="TaskText.Subtitle" parent="TaskText">
+        <item name="android:textSize">@dimen/font_subtitle</item>
+    </style>
+
+    <style name="TaskText.Subtitle.Label" parent="TaskText.Subtitle">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="4dp">
+
+    <TextView
+        style="@style/TaskText.Subtitle"
+        android:id="@+id/task_info"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        android:gravity="center"
+        tools:text="Task 1 – 11:00" />
+
+</com.google.android.material.card.MaterialCardView>

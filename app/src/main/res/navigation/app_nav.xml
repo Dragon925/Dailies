@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/taskListFragment">
+
+    <fragment
+        android:id="@+id/taskListFragment"
+        android:name="com.github.dragon925.dailies.ui.fragments.TaskListFragment"
+        android:label="fragment_task_list"
+        tools:layout="@layout/fragment_task_list" >
+        <action
+            android:id="@+id/action_taskListFragment_to_taskInfoFragment"
+            app:destination="@id/taskInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskInfoFragment"
+        android:name="com.github.dragon925.dailies.ui.fragments.TaskInfoFragment"
+        android:label="fragment_task_info"
+        tools:layout="@layout/fragment_task_info" >
+        <argument
+            android:name="task_id"
+            app:argType="integer" />
+    </fragment>
+</navigation>

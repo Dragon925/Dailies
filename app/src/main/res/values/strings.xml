@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Dailies</string>
+
+    <string name="delete_task_title">Удалить дело</string>
+    <string name="confirm_task_delete">Вы уверены, что хотите удалить дело?</string>
+    <string name="confirm">Да</string>
+    <string name="cancel">Отмена</string>
+    <string name="hide">Скрыть</string>
+    <string name="delete">Удалить</string>
+    <string name="dates_description">Даты начала и конца дела</string>
+    <string name="task_description">Описание дела</string>
 </resources>

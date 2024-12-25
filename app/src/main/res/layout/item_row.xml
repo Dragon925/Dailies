@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        style="@style/TaskText.Subtitle.Label"
+        android:id="@+id/time"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="25"
+        android:gravity="center"
+        tools:text="11:00 – 12:00"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_tasks"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="75"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_task"/>
+
+</LinearLayout>
