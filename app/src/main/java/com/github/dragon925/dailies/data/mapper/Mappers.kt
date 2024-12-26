@@ -1,5 +1,6 @@
 package com.github.dragon925.dailies.data.mapper
 
+import com.github.dragon925.dailies.data.datasource.room.entity.TaskEntity
 import com.github.dragon925.dailies.data.model.TaskDto
 import com.github.dragon925.dailies.domain.model.Task
 import kotlinx.datetime.Instant
@@ -21,4 +22,16 @@ fun Task.toDto(timeZone: TimeZone = TimeZone.currentSystemDefault()) = TaskDto(
     dateEnd = dateEnd.toInstant(timeZone).toEpochMilliseconds() / 1000,
     name,
     description
+)
+
+fun TaskEntity.toDto() = TaskDto(
+    id,
+    dateStart = dateStart,
+    dateEnd = dateEnd,
+    name,
+    description
+)
+
+fun TaskDto.toEntity() = TaskEntity(
+    name, dateStart, dateEnd, description, id
 )

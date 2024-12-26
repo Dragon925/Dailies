@@ -6,6 +6,7 @@ import com.github.dragon925.dailies.ui.models.TaskInfoUIState
 import com.github.dragon925.dailies.ui.models.TaskItem
 import com.github.dragon925.dailies.ui.models.TaskListUIState
 import com.github.dragon925.dailies.ui.models.TimeRow
+import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
@@ -15,13 +16,18 @@ import kotlinx.datetime.format.MonthNames
 import kotlinx.datetime.format.char
 import kotlinx.datetime.periodUntil
 import kotlinx.datetime.toInstant
+import kotlinx.datetime.toLocalDateTime
 
 private val RUSSIAN_ABBREVIATED: MonthNames = MonthNames(
     listOf("янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек")
 )
 
-val dateFormat = LocalDate.Format {
+val dateFormatMonthAbbreviated = LocalDate.Format {
     dayOfMonth(); char(' '); monthName(RUSSIAN_ABBREVIATED); char(' '); year()
+}
+
+val dateFormat = LocalDate.Format {
+    dayOfMonth(); char('.'); monthNumber(); char('.'); year()
 }
 
 val timeFormat = LocalTime.Format {
@@ -45,7 +51,7 @@ fun TaskListState.toListUIState(): TaskListUIState {
         )
     }
     return TaskListUIState(
-        date.format(dateFormat),
+        date.format(dateFormatMonthAbbreviated),
         row
     )
 }
@@ -69,3 +75,10 @@ fun Task.toInfoUIState() = TaskInfoUIState(
     dateEnd.format(dateTimeFormat),
     description
 )
+
+fun timestampToLocalDateTime(
+    timestamp:Long,
+    timeZone: TimeZone = TimeZone.currentSystemDefault()
+): LocalDateTime {
+    return Instant.fromEpochMilliseconds(timestamp).toLocalDateTime(timeZone)
+}

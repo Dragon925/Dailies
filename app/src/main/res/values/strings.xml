@@ -9,4 +9,17 @@
     <string name="delete">Удалить</string>
     <string name="dates_description">Даты начала и конца дела</string>
     <string name="task_description">Описание дела</string>
+    <string name="title_activity_create_task">CreateTaskActivity</string>
+    <string name="create_new_task">Создать новое дело</string>
+    <string name="back">Назад</string>
+    <string name="name">Название</string>
+    <string name="begin">Начало</string>
+    <string name="end">Конец</string>
+    <string name="description">Описание</string>
+    <string name="save">Сохранить</string>
+    <string name="error_empty_date">Укажите дату</string>
+    <string name="error_empty_time">Укажите время</string>
+    <string name="error_empty_name">Укажите название</string>
+    <string name="day">День</string>
+    <string name="time">Время</string>
 </resources>

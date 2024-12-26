@@ -13,12 +13,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.github.dragon925.dailies.App
 import com.github.dragon925.dailies.R
-import com.github.dragon925.dailies.data.datasource.json.TasksJSONSource
 import com.github.dragon925.dailies.data.repository.TaskRepositoryImpl
 import com.github.dragon925.dailies.databinding.FragmentTaskInfoBinding
-import com.github.dragon925.dailies.ui.models.TaskInfoUIState
 import com.github.dragon925.dailies.ui.models.TaskInfoUIEvent
+import com.github.dragon925.dailies.ui.models.TaskInfoUIState
 import com.github.dragon925.dailies.ui.models.UIState
 import com.github.dragon925.dailies.ui.utils.ViewModelFactory
 import com.github.dragon925.dailies.ui.viewmodels.TaskInfoViewModel
@@ -41,7 +41,8 @@ class TaskInfoFragment : Fragment() {
             val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
             TaskInfoViewModel(
                 repository = TaskRepositoryImpl(
-                    TasksJSONSource,
+//                    TasksJSONSource,
+                    (requireActivity().application as App).database.databaseSource,
                     today
                 )
             )
@@ -104,10 +105,6 @@ class TaskInfoFragment : Fragment() {
 
         binding.loadingBar.visibility = if (state.isLoading) View.VISIBLE else View.INVISIBLE
 
-        if (!state.isLoading && !state.isError && state.state == null) {
-            findNavController().navigateUp()
-        }
-
         val task = state.state ?: return
         with(binding) {
             name.text = task.name
@@ -123,6 +120,7 @@ class TaskInfoFragment : Fragment() {
             .setMessage(R.string.confirm_task_delete)
             .setPositiveButton(R.string.confirm) { _, _ ->
                 viewModel.consume(TaskInfoUIEvent.DeleteTask(taskId ?: -1))
+                findNavController().navigateUp()
             }.setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
             .create()
         dialog.show()

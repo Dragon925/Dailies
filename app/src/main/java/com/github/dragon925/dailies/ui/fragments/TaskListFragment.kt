@@ -13,8 +13,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.github.dragon925.dailies.App
 import com.github.dragon925.dailies.R
-import com.github.dragon925.dailies.data.datasource.json.TasksJSONSource
 import com.github.dragon925.dailies.data.repository.TaskRepositoryImpl
 import com.github.dragon925.dailies.databinding.FragmentTaskListBinding
 import com.github.dragon925.dailies.ui.adapters.HorizontalItemDecorator
@@ -40,7 +40,8 @@ class TaskListFragment : Fragment() {
             val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
             TaskListViewModel(
                 repository = TaskRepositoryImpl(
-                    TasksJSONSource,
+//                    TasksJSONSource,
+                    (requireActivity().application as App).database.databaseSource,
                     today
                 )
             )
@@ -70,6 +71,10 @@ class TaskListFragment : Fragment() {
 
         binding.calendar.setOnDateChangeListener { _, year, month, day ->
             viewModel.consume(TaskListUIEvent.LoadTasks(LocalDate(year, month + 1, day)))
+        }
+
+        binding.fabCreateTask.setOnClickListener {
+            findNavController().navigate(R.id.action_taskListFragment_to_createTaskFragment)
         }
 
         binding.daily.adapter = TaskListAdapter(::openTask, ::deleteTask)
